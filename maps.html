@@ -5,6 +5,8 @@
       @import url(http://fonts.googleapis.com/css?family=Lobster);
     </style>
   <link rel="stylesheet" type="text/css" href="br_css.css">
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 </head>
 <body>
 <div id="page_wrapper">
@@ -25,8 +27,9 @@
         <li><a href="map-of-wanted-bike-racks.html" target="_self">Request a Bike Rack</a></li>
       </ul>
     </div>
-        <div id="content"><img src="tricycle.jpg" width="95%"></div>
-        </div>
+    <div id="content">
+      <div id="map"></div>
+    </div>
   <div id="footer">
       <ul>
         <li><a href="manage-account.html" target="_self">Manage Your Account</a></li>
@@ -40,5 +43,16 @@
       </ul>
   </div>
 </div>
+<script>
+  // create the leaflet map
+  var map = L.map('map');
+  // create the tile layer with correct attribution
+  var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+  var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+  var osm = new L.TileLayer(osmUrl, {minZoom: 8, maxZoom: 16, attribution: osmAttrib});
+  // center map on NOLA
+  map.setView(new L.LatLng(29.95, -90.07),13);
+  map.addLayer(osm);
+</script>
 </body>
 </html>
